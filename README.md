@@ -141,7 +141,7 @@ The full SQL queries and results are available as a separate file in this reposi
 
 ## 📊Power BI Dashboard
 
-To visualize sales and marketing performance, I built an interactive Power BI dashboard using the same data.
+To visualize sales and marketing performance, I built an interactive [Power BI dashboard](https://app.powerbi.com/view?r=eyJrIjoiOTI3ZGZhYzgtYmU5OS00NmRjLWE1ZDYtNDQxYTllNThjYTY0IiwidCI6ImM2ZmU1ZDQwLTYwNWEtNGE3My05M2FmLTljYmFiZGZlN2UxOSJ9) using the same data.
 The dashboard provides a comprehensive view of revenue trends, product performance, customer feedback, and marketing effectiveness.
 
 <img width="3652" height="2112" alt="image" src="https://github.com/user-attachments/assets/64c5c528-99a3-40af-ba1f-c87ecc3534ca" />
