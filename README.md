@@ -1,5 +1,8 @@
 # Blinkit_sales_data_analysis
-> SQL-based data analysis and Power BI dashboard exploring Blinkit’s sales, marketing, and customer insights for data-driven decision-making.
+> SQL-based data analysis and Power BI dashboard exploring Blinkit’s sales, marketing, and customer insights for data-driven decision-making.<br>
+
+
+</br>
 
 ## 🔍Overview
 
@@ -14,7 +17,7 @@ I also created an interactive Power BI dashboard using the same datasets to visu
 
 ## 🗃️About the Dataset
 
-The dataset consists of eight tables, structured as follows:
+The [dataset](https://www.kaggle.com/datasets/akxiit/blinkit-sales-dataset?select=blinkit_inventory.csv) consists of eight tables, structured as follows:
 
 <img width="1816" height="1012" alt="image" src="https://github.com/user-attachments/assets/34e78c9b-55b7-4a7e-9eec-e7dcd67709dd" />
 
