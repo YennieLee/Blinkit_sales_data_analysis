@@ -147,10 +147,11 @@ The full SQL queries and results are available as a separate file in this reposi
 To visualize sales and marketing performance, I built an interactive [Power BI dashboard](https://app.powerbi.com/view?r=eyJrIjoiOTI3ZGZhYzgtYmU5OS00NmRjLWE1ZDYtNDQxYTllNThjYTY0IiwidCI6ImM2ZmU1ZDQwLTYwNWEtNGE3My05M2FmLTljYmFiZGZlN2UxOSJ9) using the same data.
 The dashboard provides a comprehensive view of revenue trends, product performance, customer feedback, and marketing effectiveness.
 
-<img width="3652" height="2112" alt="image" src="https://github.com/user-attachments/assets/64c5c528-99a3-40af-ba1f-c87ecc3534ca" />
-<img width="3652" height="2112" alt="image" src="https://github.com/user-attachments/assets/eea16069-aba1-4758-af03-b23f152b5597" />
-<img width="3652" height="2112" alt="image" src="https://github.com/user-attachments/assets/b31c9d06-e906-44ac-adf7-29ec668112dd" />
-<img width="3652" height="2112" alt="image" src="https://github.com/user-attachments/assets/a282ff10-9965-4a05-a034-d03711e807b7" />
+<img width="4998" height="2851" alt="image" src="https://github.com/user-attachments/assets/26c73051-3b03-4f61-8a08-af8f6cc44aeb" />
+<img width="4998" height="2851" alt="image" src="https://github.com/user-attachments/assets/1eaa7d89-1d8c-4804-910b-b8dbaa8ac34d" />
+<img width="4998" height="2851" alt="image" src="https://github.com/user-attachments/assets/67010d65-dfa4-486f-8c02-66a00227f35e" />
+<img width="4998" height="2851" alt="image" src="https://github.com/user-attachments/assets/e6c3c392-aa54-45ef-9596-84f5ff0899f9" />
+
 
 
 
