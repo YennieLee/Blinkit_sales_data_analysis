@@ -61,6 +61,9 @@ The full SQL queries and results are available as a separate file in this reposi
   
   <img width="517" height="164" alt="image" src="https://github.com/user-attachments/assets/b277139d-0757-422c-914a-5d056b54b4fc" />
 
+- Insight
+  - The top 5 products were baby food, mangoes, bread, and vitamins from two different brands.
+  - Interestingly, 2 out of the top 5 were vitamins, suggesting that promoting supplements could further increase profit.
   
 ### 💸Sales & Revenue Analysis
 - Use SQL window functions to find **monthly revenue growth rate** or **customer retention rate**.
@@ -81,25 +84,31 @@ The full SQL queries and results are available as a separate file in this reposi
   
   <img width="518" height="163" alt="image" src="https://github.com/user-attachments/assets/1b997b8a-4a8d-4ca6-a95a-e669d097c94a" />
 
+- Insight
+  - Since the dataset did not include complete data for March 2023, the growth rate in April appears overstated.
+  - The average monthly growth gap was around 10%, which is relatively high.
+  - Implementing consistent promotions could help stabilize sales and maintain steady growth. 
 
 
 ### 👥Customer Analysis
-- What is the **average number of orders per customer**?
+- Which **customer segment** generated the highest revenue?
   
   ```
-  SELECT avg(order_cnt) AS avg_order
-  FROM (
-  	SELECT c.customer_id, count(o.order_id) AS order_cnt
-  	FROM customers AS c
-  	LEFT OUTER JOIN orders AS o
-  	ON c.customer_id = o.customer_id
-  	GROUP BY c.customer_id
-  ) t;
+  SELECT c.customer_segment, avg(o.order_total) AS revenue
+  FROM orders AS o 
+  RIGHT OUTER JOIN customers AS c
+  ON o.customer_id = c.customer_id
+  GROUP BY c.customer_segment
+  ORDER BY revenue DESC;
   ```
 - Result :
   
-  <img width="521" height="59" alt="image" src="https://github.com/user-attachments/assets/df62bfb6-654b-49dc-b0c1-665650dac1bc" />
+  <img width="524" height="136" alt="image" src="https://github.com/user-attachments/assets/f5ad281b-af63-4bc2-8ee7-9409446ca40a" />
 
+
+- Insight :
+  - Among the four customer segments, newly registered customers showed the highest average order value (AOV).
+  - If Blinkit offers discounts or free delivery promotions for new customers who spend above a certain amount, it could further increase both AOV and total sales.
 
 
 ### 🚚Delivery Performance Analysis
@@ -123,19 +132,28 @@ The full SQL queries and results are available as a separate file in this reposi
   
   <img width="518" height="162" alt="image" src="https://github.com/user-attachments/assets/d1800420-8e1c-4822-bd83-c124847ae8f2" />
 
+- Insight
+  - The on-time delivery ratio varied significantly across regions but tended to be higher in coastal areas — the top 5 regions for delivery performance were all located near the coast.
+
 
 ### 📣Marketing & Campaign Insights
-- Which **channel** drives the **highest customer engagement (CTR)**?
+- Which **campaign** generated the **highest ROAS**?
   
   ```
-  SELECT channel, avg(clicks/impressions)*100 AS CTR_avg
+  SELECT campaign_name, target_audience, channel, avg(roas) AS roas_avg
   FROM marketing_performance
-  GROUP BY channel
-  ORDER BY CTR_avg DESC;
+  GROUP BY campaign_name, target_audience, channel
+  ORDER BY campaign_name, roas_avg DESC;
   ```
 - Result :
   
-  <img width="519" height="137" alt="image" src="https://github.com/user-attachments/assets/fcaf730d-b004-49cc-994c-fadda1280a6f" />
+  <img width="567" height="62" alt="image" src="https://github.com/user-attachments/assets/ea017833-b63a-4508-9b71-8433deab4bd7" />
+  <img width="564" height="30" alt="image" src="https://github.com/user-attachments/assets/bb474b19-4681-424c-b37a-7e82746fc1a1" />
+
+- Insight
+  - The Return on Ad Spend (ROAS) analysis highlights the importance of selecting the right target audience and marketing channel.
+  - For example, when category promotions were run via Email targeting new users, the average ROAS was around 3.0.
+  - However, the same promotion through the App for the same audience resulted in a lower ROAS of about 2.3, showing how channel choice directly impacts marketing efficiency.
  <br>
 
 
