@@ -13,8 +13,8 @@ This project focuses on **sales and marketing data analysis** for Blinkit, with 
 
 The project consists of two main parts:
 
-1. I explored the data to drive business insights and develop recommendations in product, sales, customer, delivery, and marketing aspect. 
-2. I created an interactive Power BI dashboard using the same datasets to visualize business insights.
+1. Explored the data to drive business insights and develop recommendations in product, sales, customer, delivery, and marketing aspect. 
+2. Created an interactive Power BI dashboard using the same datasets to visualize business insights.
 
 <br><br>
 
@@ -27,7 +27,9 @@ The project consists of two main parts:
 - **[Blinkit Sales Dataset](https://www.kaggle.com/datasets/akxiit/blinkit-sales-dataset?select=blinkit_inventory.csv)**
 - Covers sales data from **March 2023 to November 2024**
 - The dataset consists of eight tables, structured as follows:
+  
   <img width="3320" height="1656" alt="image" src="https://github.com/user-attachments/assets/fe75a443-c202-484a-9913-6fac6c55c204" />
+  
   1. orders – Basic information about each order
   2. order_items – Details of items included in each order
   3. products – List of products sold on Blinkit
@@ -110,10 +112,8 @@ The project consists of two main parts:
 
 <img width="1456" height="443" alt="image" src="https://github.com/user-attachments/assets/5e8c295b-b80a-482e-80de-fb58fa5b9eb3" />
 
-- Cities with the **highest on-time delivery rates** include Visakhapatnam, Thiruvananthapuram, Gandhidham, Berhampur, and Jamnagar.
-    - These cities benefit from **strong infrastructure and logistics accessibility**.
-- Cities with the **lowest on-time delivery rates** include Sonipat, Thoothukudi, Bijapur, Anantapur, Bulandshahr, and Agra.
-    - These are mostly **tier-2 and tier-3 cities**, where rider availability and navigation accuracy may be limited.
+- Cities with the **highest on-time delivery rates** include Visakhapatnam, Thiruvananthapuram, Gandhidham, Berhampur, and Jamnagar. These cities benefit from **strong infrastructure and logistics accessibility**.
+- Cities with the **lowest on-time delivery rates** include Sonipat, Thoothukudi, Bijapur, Anantapur, Bulandshahr, and Agra. These are mostly **tier-2 and tier-3 cities**, where rider availability and navigation accuracy may be limited.
 - 💡 **Recommendation:** Increasing delivery partner availability in underperforming cities could improve on-time delivery rates.
 
 <br><br>
