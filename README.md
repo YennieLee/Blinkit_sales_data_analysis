@@ -1,164 +1,151 @@
 # Blinkit_sales_data_analysis 🛒
-> SQL-based data analysis and Power BI dashboard exploring Blinkit’s sales, marketing, and customer insights for data-driven decision-making.<br>
+> SQL-based data analysis and Power BI dashboard exploring Blinkit’s sales, marketing, and customer insights for data-driven decision-making.
 
-
-</br>
+<br><br><br>
 
 ## 🔍Overview
 
-This project is a sales and marketing data analysis of Blinkit, an online grocery delivery app in India.
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/e853935b-e46e-46aa-9ba5-fe6ea4d7df28" />
 
-I performed exploratory data analysis (EDA) on key areas including sales, products, customers, marketing, and delivery using SQL.
-I also created an interactive Power BI dashboard using the same datasets to visualize business insights. <br>
+Blinkit is an online grocery delivery service in India, founded in 2013 and currently operating in over 153 cities (as of 2025).
 
+This project focuses on **sales and marketing data analysis** for Blinkit, with the goal of identifying actionable business insights across **sales, product, customer, delivery, and marketing performance**.
 
+The project consists of two main parts:
 
-</br>
+1. I explored the data to drive business insights and develop recommendations in product, sales, customer, delivery, and marketing aspect. 
+2. I created an interactive Power BI dashboard using the same datasets to visualize business insights.
 
-## 🗃️About the Dataset
+<br><br>
 
-The [dataset](https://www.kaggle.com/datasets/akxiit/blinkit-sales-dataset?select=blinkit_inventory.csv) consists of eight tables, structured as follows:
+---
 
-<img width="1816" height="1012" alt="image" src="https://github.com/user-attachments/assets/34e78c9b-55b7-4a7e-9eec-e7dcd67709dd" />
+<br>
 
-1. orders – Basic information about each order
-2. order_items – Details of items included in each order
-3. products – List of products sold on Blinkit
-4. customers – Customer information for registered members
-5. customer_feedback – Customer feedback on purchased products
-6. delivery_performance – Delivery performance for each order
-7. marketing_performance – Performance metrics for marketing campaigns
-8. inventory – Daily stock information for each product <br>
+## 🗃️ About the Dataset
 
+- **[Blinkit Sales Dataset](https://www.kaggle.com/datasets/akxiit/blinkit-sales-dataset?select=blinkit_inventory.csv)**
+- Covers sales data from **March 2023 to November 2024**
+- The dataset consists of eight tables, structured as follows:
+  <img width="3320" height="1656" alt="image" src="https://github.com/user-attachments/assets/fe75a443-c202-484a-9913-6fac6c55c204" />
+  1. orders – Basic information about each order
+  2. order_items – Details of items included in each order
+  3. products – List of products sold on Blinkit
+  4. customers – Customer information for registered members
+  5. customer_feedback – Customer feedback on purchased products
+  6. delivery_performance – Delivery performance for each order
+  7. marketing_performance – Performance metrics for marketing campaigns
+  8. inventory – Daily stock information for each product
 
+<br><br>
 
-</br>
+---
 
-## 🛢️SQL Queries
+<br>
 
-I explored the dataset using MySQL and wrote several queries (5–7) to answer questions related to sales, product performance, customer behavior, delivery efficiency, and marketing campaigns.
+## 📈 Sales Insights
 
-This section presents representative example questions for each topic covered in this project.
-The full SQL queries and results are available as a separate file in this repository.
+<img width="1531" height="640" alt="image" src="https://github.com/user-attachments/assets/36d4a154-311f-4351-9140-98c2dc6012c9" />
 
-### 🛍️Product Analysis
-- What are the **top 5 products** by revenue?
-  
-  ```
-  SELECT o.product_id, p.product_name, p.brand, o.revenue
-  FROM (
-  	SELECT product_id, sum(quantity * unit_price) AS revenue
-      FROM order_items
-      GROUP BY product_id
-  ) AS o
-  INNER JOIN products AS p
-  ON p.product_id = o.product_id
-  ORDER BY o.revenue DESC
-  LIMIT 5;
-  ```
+- The **average monthly sales revenue** from April 2023 to October 2024 is **INR 561.49K**. (March 2023 and November 2024 were excluded due to incomplete records.)
+- Blinkit recorded the **highest sales in August 2023** and the **lowest in June 2023**.
 
-- Result :
-  
-  <img width="517" height="164" alt="image" src="https://github.com/user-attachments/assets/b277139d-0757-422c-914a-5d056b54b4fc" />
+<br>
 
-- Insight
-  - The top 5 products were baby food, mangoes, bread, and vitamins from two different brands.
-  - Interestingly, 2 out of the top 5 were vitamins, suggesting that promoting supplements could further increase profit.
-  
-### 💸Sales & Revenue Analysis
-- Use SQL window functions to find **monthly revenue growth rate** or **customer retention rate**.
-  
-  ```
-  SELECT *,
-      (revenue/(lag(revenue, 1) OVER (PARTITION BY 'month')) - 1)*100 AS growth_rate
-  FROM (
-  	SELECT 
-  	date_format(order_date, '%Y-%m') AS 'month',
-  	sum(order_total) AS 'revenue'
-  	FROM orders
-  	GROUP BY date_format(order_date, '%Y-%m')
-  	ORDER BY date_format(order_date, '%Y-%m')
-  ) t;
-  ```
-- Result :
-  
-  <img width="518" height="163" alt="image" src="https://github.com/user-attachments/assets/1b997b8a-4a8d-4ca6-a95a-e669d097c94a" />
+<img width="2540" height="1067" alt="image" src="https://github.com/user-attachments/assets/09b06db9-6e1c-48eb-ac39-90964602592b" />
 
-- Insight
-  - Since the dataset did not include complete data for March 2023, the growth rate in April appears overstated.
-  - The average monthly growth gap was around 10%, which is relatively high.
-  - Implementing consistent promotions could help stabilize sales and maintain steady growth. 
+- **Order volume closely follows revenue trends**, indicating that revenue growth is primarily driven by order frequency rather than price changes.
 
+<br>
 
-### 👥Customer Analysis
-- Which **customer segment** generated the highest revenue?
-  
-  ```
-  SELECT c.customer_segment, avg(o.order_total) AS revenue
-  FROM orders AS o 
-  RIGHT OUTER JOIN customers AS c
-  ON o.customer_id = c.customer_id
-  GROUP BY c.customer_segment
-  ORDER BY revenue DESC;
-  ```
-- Result :
-  
-  <img width="524" height="136" alt="image" src="https://github.com/user-attachments/assets/f5ad281b-af63-4bc2-8ee7-9409446ca40a" />
+<img width="2522" height="1066" alt="image" src="https://github.com/user-attachments/assets/7da44199-307b-4b0f-95fc-d8f4d3208ef0" />
 
+- Monthly revenue growth shows **high volatility**, with repeated ups and downs over time.
+- 💡 **Business implication:** Implementing more consistent promotional strategies may help stabilize revenue and support sustained growth.
 
-- Insight :
-  - Among the four customer segments, newly registered customers showed the highest average order value (AOV).
-  - If Blinkit offers discounts or free delivery promotions for new customers who spend above a certain amount, it could further increase both AOV and total sales.
+<br><br>
 
+---
 
-### 🚚Delivery Performance Analysis
-- Which **area** has the **highest on-time delivery rate**?
-  
-  ```
-  SELECT
-  	c.area,
-      count(if(d.delivery_status='On Time', 1, NULL)) / count(d.delivery_status) AS on_time_rate,
-      count(o.order_id) AS order_cnt
-  FROM delivery_performance AS d
-  INNER JOIN orders AS o
-  ON d.order_id = o.order_id
-  RIGHT OUTER JOIN customers AS c
-  ON o.customer_id = c.customer_id
-  GROUP BY c.area
-  HAVING order_cnt >= 20
-  ORDER BY on_time_rate DESC;
-  ```
-- Result :
-  
-  <img width="518" height="162" alt="image" src="https://github.com/user-attachments/assets/d1800420-8e1c-4822-bd83-c124847ae8f2" />
+<br>
 
-- Insight
-  - The on-time delivery ratio varied significantly across regions but tended to be higher in coastal areas — the top 5 regions for delivery performance were all located near the coast.
+## 🧴 Product Insights
 
+<img width="1582" height="638" alt="image" src="https://github.com/user-attachments/assets/0f0f5392-0b2b-47c2-acb0-54d77d645737" />
 
-### 📣Marketing & Campaign Insights
-- Which **campaign** generated the **highest ROAS**?
-  
-  ```
-  SELECT campaign_name, target_audience, channel, avg(roas) AS roas_avg
-  FROM marketing_performance
-  GROUP BY campaign_name, target_audience, channel
-  ORDER BY campaign_name, roas_avg DESC;
-  ```
-- Result :
-  
-  <img width="567" height="62" alt="image" src="https://github.com/user-attachments/assets/ea017833-b63a-4508-9b71-8433deab4bd7" />
-  <img width="564" height="30" alt="image" src="https://github.com/user-attachments/assets/bb474b19-4681-424c-b37a-7e82746fc1a1" />
+- Among 11 categories, **Dairy & Breakfast, Pharmacy, and Fruits & Vegetables** are the **top three revenue contributors**.
+- The **top five products by revenue** include baby food, mangoes, bread, and vitamins across two brands.
+- 💡 **Recommendation:** “Buy 2 Get 1 Free” promotions for **supplements and breakfast products** could increase basket size and overall profitability.
 
-- Insight
-  - The Return on Ad Spend (ROAS) analysis highlights the importance of selecting the right target audience and marketing channel.
-  - For example, when category promotions were run via Email targeting new users, the average ROAS was around 3.0.
-  - However, the same promotion through the App for the same audience resulted in a lower ROAS of about 2.3, showing how channel choice directly impacts marketing efficiency.
- <br>
+<br><br>
 
+---
 
+<br>
 
-</br>
+## 👤 Customer Insights
+
+<img width="1511" height="544" alt="image" src="https://github.com/user-attachments/assets/7a940632-f3a7-4af6-be1f-57b6008454eb" />
+
+- Customers are segmented into four groups: **New, Regular, Premium, and Inactive**.
+- Each segment represents a similar share of the customer base (**24–25.5%**).
+- **Average Order Value (AOV)** is slightly higher among **new customers**.
+- 💡 **Recommendation:** Offering discounts or free delivery for new customers who exceed a spending threshold could further increase AOV and total revenue.
+
+<br><br>
+
+---
+
+<br>
+
+## 🚚 Delivery Insights
+
+<img width="1578" height="595" alt="image" src="https://github.com/user-attachments/assets/46669359-4c8c-49ca-8abd-9593b9b32019" />
+
+- The **average delivery time** is **19 minutes**.
+- **70% of orders** are delivered on time, **20% slightly late**, and **10% late**.
+- Delivery time is **not strongly affected by distance**, suggesting operational rather than geographic constraints.
+
+<br>
+
+<img width="1456" height="443" alt="image" src="https://github.com/user-attachments/assets/5e8c295b-b80a-482e-80de-fb58fa5b9eb3" />
+
+- Cities with the **highest on-time delivery rates** include Visakhapatnam, Thiruvananthapuram, Gandhidham, Berhampur, and Jamnagar.
+    - These cities benefit from **strong infrastructure and logistics accessibility**.
+- Cities with the **lowest on-time delivery rates** include Sonipat, Thoothukudi, Bijapur, Anantapur, Bulandshahr, and Agra.
+    - These are mostly **tier-2 and tier-3 cities**, where rider availability and navigation accuracy may be limited.
+- 💡 **Recommendation:** Increasing delivery partner availability in underperforming cities could improve on-time delivery rates.
+
+<br><br>
+
+---
+
+<br>
+
+## 📢 Marketing Insights
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/7368a2c0-b3ae-4e4e-b4a4-03d2f5d3c3df" alt="image1" width="850">
+</p>
+
+- Blinkit runs multiple marketing campaigns, including **email campaigns referral program and weekend sales**.
+- Among nine campaign types, **email campaigns show the highest ROAS**, while **category promotions show the lowest overall ROAS**.
+
+<br>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/8bb841cb-64c0-43cb-ac50-eb45d90dcebd" alt="image1" width="850">
+</p>
+
+- Campaign performance varies significantly by **channel and customer target audience**.
+- For example, category promotions achieve a **ROAS of 3.0** when targeting new users via email, but only **2.3** when delivered through the app.
+- 💡 **Recommendation:** Optimizing campaign-channel combinations can significantly improve marketing efficiency.
+
+<br><br>
+
+---
+
+<br>
 
 ## 📊Power BI Dashboard
 
