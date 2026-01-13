@@ -134,7 +134,7 @@ The project consists of two main parts:
 <br>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/8bb841cb-64c0-43cb-ac50-eb45d90dcebd" alt="image1" width="850">
+  <img src="https://github.com/user-attachments/assets/8bb841cb-64c0-43cb-ac50-eb45d90dcebd" alt="image1" width="800">
 </p>
 
 - Campaign performance varies significantly by **channel and customer target audience**.
